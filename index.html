@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Folding sidebar</title>
+
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<nav id="sidebar" class="col-md-2 d-block bg-light sidebar">
+				<div class="sidebar-sticky">
+					<div class="sidebar-content">
+						<form class="form">
+							<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+						</form>
+
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link active" href="#">
+									<span data-feather="home"></span>
+									Dashboard <span class="sr-only">(current)</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="file"></span>
+									Orders
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="shopping-cart"></span>
+									Products
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="users"></span>
+									Customers
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="bar-chart-2"></span>
+									Reports
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="layers"></span>
+									Integrations
+								</a>
+							</li>
+						</ul>
+
+						<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+							<span>Saved reports</span>
+							<a class="d-flex align-items-center text-muted" href="#">
+								<span data-feather="plus-circle"></span>
+							</a>
+						</h6>
+						<ul class="nav flex-column mb-2">
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="file-text"></span>
+									Current month
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="file-text"></span>
+									Last quarter
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="file-text"></span>
+									Social engagement
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<span data-feather="file-text"></span>
+									Year-end sale
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<main id="main" class="col-md-10 ml-sm-auto px-4 main is-open"></main>
+		</div>
+	</div>
+
+	<!-- Icons -->
+	<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+	<script>
+
+	  feather.replace()
+
+	</script>
+	<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+	<script type="text/javascript">
+
+		$( function () {
+
+			function cloneSidebar() {
+
+				$( '.sidebar-half' ).remove();
+
+				let sidebarHalf1 = $( '.sidebar-sticky' ).clone();
+				let sidebarHalf2 = $( '.sidebar-sticky' ).clone();
+
+				sidebarHalf1
+					.wrap( 'div' )
+					.attr( 'class', 'sidebar-sticky sidebar-half sidebar-half-1' )
+					.appendTo( '#sidebar' );
+
+				sidebarHalf2
+					.wrap( 'div' )
+					.attr( 'class', 'sidebar-sticky sidebar-half sidebar-half-2' )
+					.appendTo( '#sidebar' );
+
+			}
+
+			$.mobile.loading().hide();
+
+			function closeSidebar() {
+
+				$( '#main' ).removeClass( 'is-open' );
+
+				$( '.sidebar input' ).css( 'pointer-events', 'none' );
+
+				cloneSidebar();
+
+				$( '.sidebar-sticky:first-child' ).hide();
+
+				setTimeout( function () {
+
+					$( '#sidebar' ).addClass( 'is-close' );
+
+				}, 200 );
+
+				setTimeout( function () {
+
+					$( '#main' ).addClass( 'is-close' );
+
+				}, 1000 );
+
+			}
+
+			function openSidebar() {
+
+				$( '#main' ).removeClass( 'is-close' );
+
+				$( '.sidebar input' ).css( 'pointer-events', 'none' );
+
+				$( '#sidebar' ).removeClass( 'is-close' );
+
+				setTimeout( function () {
+
+					$( '.sidebar-sticky:first-child' ).show();
+					$( '.sidebar-half' ).remove();
+					$( '.sidebar input' ).css( 'pointer-events', '' );
+
+					$( '#main' ).addClass( 'is-open' );
+
+				}, 1000 );
+
+			}
+
+			$( 'body' ).on( 'swipeleft', '.is-open', closeSidebar );
+			$( 'body' ).on( 'swiperight', '.is-close', openSidebar );
+
+		} );
+
+	</script>
+</body>
+</html>

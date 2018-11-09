@@ -1,0 +1,170 @@
+
+body {
+	font-size: 0.875rem;
+}
+
+.feather {
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.sidebar-sticky {
+	background-color: #f8f8f8;
+	box-shadow: inset -1px 0 0 rgba( 0, 0, 0, 0.1 );
+	position: relative;
+	top: 0;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ( ( position: -webkit-sticky ) or ( position: sticky ) ) {
+
+	.sidebar-sticky {
+		position: -webkit-sticky;
+		position: sticky;
+	}
+
+}
+
+.sidebar .nav-link {
+	font-weight: 500;
+	color: #333;
+}
+
+.sidebar .nav-link .feather {
+	margin-right: 4px;
+	color: #999;
+}
+
+.sidebar .nav-link.active {
+	color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+	color: inherit;
+}
+
+.sidebar-heading {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+}
+
+.sidebar .form {
+	padding: 1rem;
+}
+
+.sidebar {
+	width: 280px;
+	max-width: 280px;
+}
+
+/*
+ * Content
+ */
+
+.main {
+	padding-top: 1.5rem;
+	width: calc( 100% - 280px );
+	max-width: calc( 100% - 280px );
+}
+
+/*
+ * Folding sidebar
+ */
+
+.main {
+	display: flex;
+	height: 100vh;
+}
+
+.sidebar {
+	backface-visibility: hidden;
+	background-color: transparent !important;
+	box-shadow: none;
+	perspective: 1000px;
+	transform: translate3d( 0, 0, 0 );
+	transition-duration: 1s;
+}
+
+.sidebar.is-close {
+	transform: translate3d( -280px, 0, 0 );
+}
+
+.main {
+	flex: 0 0 auto;
+	transition-duration: 1s;
+}
+
+.sidebar.is-close ~ .main {
+	flex-grow: 1;
+	width: 100%;
+	max-width: 100%;
+}
+
+.sidebar-half {
+	float: left;
+	overflow: hidden;
+	position: relative;
+
+	transform: translate3d( 0, 0, 0 ) rotateY( 0deg );
+	transform-style: preserve-3d;
+
+	transition-duration: 1s;
+	white-space: nowrap;
+	width: 50%;
+}
+
+.is-close .sidebar-half {
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+
+	height: calc( 100vh - 6rem );
+}
+
+.sidebar-half-1 {
+	box-shadow: none;
+	transform-origin: right center;
+}
+
+.is-close .sidebar-half-1 {
+	transform: rotateY( 90deg );
+}
+
+.sidebar-half-2 {
+	box-shadow: inset -1px 0 0 rgba( 0, 0, 0, 0.1 );
+	transform-origin: left center;
+}
+
+.is-close .sidebar-half-2 {
+	background-color: #ccc;
+
+	transform: rotateY( -90deg );
+}
+
+.sidebar-half .sidebar-content {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200%;
+}
+
+.sidebar-half-2 .sidebar-content {
+	left: -100%;
+}
